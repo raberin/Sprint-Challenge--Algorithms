@@ -20,6 +20,7 @@ for i in range(n):
   while j < n:
     j *= 2
     sum += 1
+    print(sum, j)
 ```
 
 ```
