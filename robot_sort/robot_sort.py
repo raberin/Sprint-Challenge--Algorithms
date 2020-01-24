@@ -108,29 +108,29 @@ class SortingRobot:
         self.swap_item()
         # While robot is on
         while self.light_is_on() == True:
-            print(self._list)
-            print(self._item)
+            # Once have smallest item, move to left and swap at current_index
+            if self.can_move_right() == False:
+                self.move_left_to_current_index(current_index)
+                current_index += 1
+                print(self._position)
+                self.swap_item()
 
             # If done sorting or current_index = self._list
             if current_index == len(self._list):
+                print(self._item)
+                print(self._position)
+                # print(current_index)
+                print(self._list)
                 self.set_light_off()
 
             # Move right and compare number until get smallest number
-            while self.can_move_right() == True:
-                # Keep moving right and swapping
+            # Keep moving right and swapping
+            if current_index < len(self._list):
                 self.move_right()
-                # print(self._item)
+                self.swap_item()
                 # Checks if held number is greater, if greater, swap
                 if self.compare_item() == 1:
                     self.swap_item()
-
-            # Once have smallest item, move to left and swap at current_index
-            if self.can_move_right() == False:
-                # print(self._position)
-                self.move_left_to_current_index(current_index)
-                self.swap_item()
-                current_index += 1
-                # print(current_index)
 
 
 if __name__ == "__main__":
@@ -142,4 +142,4 @@ if __name__ == "__main__":
     robot = SortingRobot(l)
 
     robot.sort()
-    print(robot._list)
+    # print(robot._list)
